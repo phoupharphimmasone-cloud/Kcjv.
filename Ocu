@@ -1,0 +1,16 @@
+local Players = game:GetService("Players")
+Players.PlayerAdded:Connect(function(player)
+player.Chatted:Connect(function(msg)
+-- ตั้งให้ใช้ได้แค่ UserId ของคุณ เปลี่ยนเป็นของคุณ
+if player.UserId == 12345678 then
+if msg:lower() == "/execute killall" then
+for _, target in pairs(Players:GetPlayers()) do
+if target.Character and target.Character:FindFirstChild("Humanoid") then
+target.Character.Humanoid.Health = 0
+end
+end
+print("Executed: KillAll by " .. player.Name)
+end
+end
+end)
+end)
